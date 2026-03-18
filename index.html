@@ -1,560 +1,1292 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paulo Vieira — Corretor de Imóveis · São Paulo</title>
-  <meta name="description" content="Corretor de imóveis em São Paulo. Acesso exclusivo às maiores construtoras. CRECI 137412-F." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'royal': '#1A2C6B',
-            'deep': '#0F1D4A',
-            'gold': '#C9A84C',
-          },
-          fontFamily: {
-            'display': ['Cormorant Garamond', 'serif'],
-            'body': ['DM Sans', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    * { -webkit-font-smoothing: antialiased; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #fff; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Paulo Vieira | Corretor de Imóveis — São Paulo</title>
+<meta name="description" content="Corretor de imóveis em São Paulo. CRECI 137412-F. Acesso exclusivo às maiores construtoras."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#080F1E;--blue:#1A4A8A;--blue2:#2260B4;--blue3:#3A7FD4;
+  --pearl:#F8F7F4;--pearl2:#F0EEE9;--white:#FFFFFF;
+  --grey:#5A6A7E;--grey2:#8A9BB0;
+  --border:rgba(26,74,138,.1);--shadow:0 4px 20px rgba(8,15,30,.07);--shadow2:0 16px 48px rgba(8,15,30,.13);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--pearl);color:var(--ink);font-family:"Sora",sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
 
-    .marble-bg {
-      background-color: #FFFFFF;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-    }
-    .offwhite-bg {
-      background-color: #F9F8F6;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-    }
 
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(28px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity:0; }
-      to   { opacity:1; }
-    }
-    @keyframes scrollLeft {
-      from { transform:translateX(0); }
-      to   { transform:translateX(-50%); }
-    }
+/* Logo Pantovi na nav */
+.nav-pantovi {
+  height: 32px;
+  width: auto;
+  opacity: .75;
+  transition: opacity .3s;
+  flex-shrink: 0;
+}
+.nav-brand:hover .nav-pantovi { opacity: 1; }
+.nav-brand-text { display:flex; flex-direction:column; }
+/* Separador vertical discreto */
+.nav-brand::after {
+  content: '';
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  margin-left: 2px;
+  flex-shrink: 0;
+}
 
-    .a1 { animation: fadeUp .7s ease forwards .20s; opacity:0; }
-    .a2 { animation: fadeUp .7s ease forwards .40s; opacity:0; }
-    .a3 { animation: fadeUp .7s ease forwards .60s; opacity:0; }
-    .a4 { animation: fadeUp .7s ease forwards .80s; opacity:0; }
-    .a5 { animation: fadeUp .7s ease forwards 1.0s; opacity:0; }
-    .a6 { animation: fadeUp .7s ease forwards 1.2s; opacity:0; }
-    .a-photo { animation: fadeIn 1.2s ease forwards .5s; opacity:0; }
 
-    .logos-track { display:flex; animation: scrollLeft 35s linear infinite; width:max-content; }
-    .logos-track:hover { animation-play-state:paused; }
+/* ── CANVAS HERO ── */
+#hero-canvas{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  opacity:.5;width:100%;height:100%;
+}
 
-    .gold-bar { display:block; width:48px; height:1px; background:#C9A84C; opacity:.7; }
-    .gold-full { display:block; width:100%; height:1px; background:linear-gradient(90deg,transparent,#C9A84C,transparent); opacity:.3; }
+/* ── GRAIN OVERLAY no hero ── */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+.hero-in{z-index:3}
+.h-tag,.h-title,.h-sub,.h-btns,.h-stats{position:relative;z-index:3}
 
-    .card-h { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-    .card-h:hover { transform:translateY(-3px); box-shadow:0 12px 48px rgba(26,44,107,.14); border-color:rgba(201,168,76,.4) !important; }
+/* ── SHINE nos botões primários ── */
+.btn-p{overflow:hidden}
+.btn-p::before{
+  content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:skewX(-20deg);transition:left .6s ease;
+}
+.btn-p:hover::before{left:130%}
 
-    .tab-btn { transition: all .25s ease; cursor:pointer; }
-    .tab-btn.active { background:#1A2C6B !important; color:#fff !important; border-color:#1A2C6B !important; }
-    .tab-btn.active img { filter: brightness(0) invert(1); }
+/* ── GLOW pulsante nos stats ── */
+.hs-n{
+  position:relative;
+  animation:statGlow 3s ease-in-out infinite;
+}
+@keyframes statGlow{
+  0%,100%{text-shadow:none}
+  50%{text-shadow:0 0 20px rgba(26,74,138,.25)}
+}
 
-    #navbar { transition: background .4s ease, box-shadow .4s ease; }
-    #navbar.scrolled { background:rgba(15,29,74,.97) !important; backdrop-filter:blur(12px); box-shadow:0 2px 32px rgba(0,0,0,.2); }
+/* ── CARDS construtoras: lift + border glow ── */
+.ci{
+  transition:background .3s,box-shadow .3s,transform .3s;
+}
+.ci:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(26,74,138,.12);
+}
+.ci.active{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(26,74,138,.15);
+}
 
-    .wa-btn { transition: transform .3s ease, box-shadow .3s ease; }
-    .wa-btn:hover { transform:scale(1.06); box-shadow:0 6px 32px rgba(37,211,102,.5); }
-  </style>
+/* ── SELOS: shimmer no hover ── */
+.selo{overflow:hidden;position:relative}
+.selo::before{
+  content:"";position:absolute;top:0;left:-100%;
+  width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(26,74,138,.06),transparent);
+  transition:left .5s ease;
+}
+.selo:hover::before{left:140%}
+
+/* ── VANTAGENS cards: número sequencial ── */
+.vc{counter-increment:vc-count}
+.vantagens .vg{counter-reset:vc-count}
+.vc::after{
+  content:counter(vc-count,decimal-leading-zero);
+  position:absolute;top:12px;right:16px;
+  font-size:.6rem;letter-spacing:.1em;
+  color:rgba(26,74,138,.12);font-weight:700;font-family:'Sora',sans-serif;
+}
+
+/* ── LINHA "E muito mais" ── */
+.cg-mais{
+  margin-top:20px;
+  font-size:.72rem;color:var(--grey2);
+  text-align:center;letter-spacing:.02em;
+}
+.cg-mais a{
+  color:var(--blue2);font-weight:600;
+  text-decoration:none;
+  border-bottom:1px solid rgba(26,74,138,.2);
+  transition:border-color .3s,color .3s;
+  padding-bottom:1px;
+}
+.cg-mais a:hover{color:var(--blue);border-color:var(--blue)}
+
+/* ── BOOKS: shimmer no thumbnail ── */
+.bc-thumb::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 50%,rgba(255,255,255,.04) 100%);
+  pointer-events:none;
+}
+
+/* ── HERO title: letter spacing animado na entrada ── */
+@keyframes titleReveal{
+  from{opacity:0;letter-spacing:.1em;transform:translateY(20px)}
+  to{opacity:1;letter-spacing:-.02em;transform:translateY(0)}
+}
+.h-title.rv.on{animation:titleReveal .9s cubic-bezier(.23,1,.32,1) forwards}
+
+/* ── SOBRE foto: glow sutil ── */
+.sobre-foto img{
+  transition:box-shadow .4s,transform .4s;
+}
+.sobre-foto:hover img{
+  transform:scale(1.01);
+  box-shadow:0 24px 64px rgba(26,74,138,.2);
+}
+
+/* ── FOOTER: linha decorativa animada ── */
+footer::before{
+  content:"";display:block;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),rgba(26,74,138,.2),rgba(255,255,255,.08),transparent);
+  margin-bottom:0;
+}
+
+/* ── CTA: glow animado ── */
+.cta-glow{animation:ctaGlow 4s ease-in-out infinite}
+@keyframes ctaGlow{
+  0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:.6;transform:translate(-50%,-50%) scale(1.15)}
+}
+
+/* ── SCROLL reveal melhorado: stagger natural ── */
+.rv{transition-timing-function:cubic-bezier(.16,1,.3,1)}
+
+/* ── BOOKS grid: border-left accent ── */
+.bc{border-left:3px solid transparent;transition:border-left-color .3s,box-shadow .3s,transform .3s}
+.bc:hover{border-left-color:var(--blue3)}
+
+/* PROGRESS */
+#pb{position:fixed;top:0;left:0;height:3px;z-index:9999;pointer-events:none;
+  background:linear-gradient(90deg,var(--blue),var(--blue3));width:0;transition:width .1s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
+  transition:background .4s,box-shadow .4s}
+.nav.on{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;
+  height:64px;padding:0 24px;max-width:1100px;margin:0 auto}
+.nav-brand{display:flex;flex-direction:row;align-items:center;gap:10px;text-decoration:none}
+.nav-name{font-family:"DM Serif Display",serif;font-size:1.1rem;color:var(--ink);line-height:1;letter-spacing:.01em}
+.nav-creci{font-size:.42rem;letter-spacing:.28em;text-transform:uppercase;color:var(--blue2);margin-top:3px;font-weight:600}
+.nav-links{display:none;gap:28px;list-style:none}
+.nav-links a{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);font-weight:600;transition:color .3s}
+.nav-links a:hover{color:var(--blue)}
+.nav-wa{display:flex;align-items:center;gap:7px;font-size:.58rem;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;color:var(--white);background:var(--blue);
+  padding:10px 18px;border-radius:3px;transition:background .3s,transform .2s;white-space:nowrap}
+.nav-wa:hover{background:var(--blue2);transform:translateY(-1px)}
+.nav-wa svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.hbg{display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:.35rem}
+.hbg span{display:block;width:21px;height:1.5px;background:var(--ink);border-radius:2px;transition:all .3s}
+.mob{display:none;flex-direction:column;background:var(--white);border-top:1px solid var(--border);padding:14px 24px 20px}
+.mob.open{display:flex}
+.mob a{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--grey);
+  padding:.72rem 0;border-bottom:1px solid rgba(0,0,0,.04);transition:color .3s}
+.mob a:last-child{border:none}
+.mob a:hover{color:var(--blue)}
+.mob-wa{margin-top:10px !important;text-align:center;padding:.85rem !important;
+  background:#25D366 !important;color:#fff !important;font-weight:700 !important;
+  border-radius:3px;border:none !important;letter-spacing:.06em}
+
+/* HERO — sem foto, grande, tipografia dominante */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:96px 24px 72px;position:relative;overflow:hidden;
+  background:linear-gradient(155deg,#fff 0%,var(--pearl) 48%,#e2ecf8 100%)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,rgba(26,74,138,.022) 0 1px,transparent 1px 72px),
+  repeating-linear-gradient(0deg,rgba(26,74,138,.015) 0 1px,transparent 1px 72px)}
+.hg{position:absolute;border-radius:50%;pointer-events:none}
+.hg1{width:520px;height:520px;right:-80px;top:30%;transform:translateY(-50%);
+  background:radial-gradient(ellipse,rgba(26,74,138,.08) 0%,transparent 68%)}
+.hg2{width:300px;height:300px;left:-60px;bottom:0;
+  background:radial-gradient(ellipse,rgba(58,127,212,.05) 0%,transparent 68%)}
+.hero-in{position:relative;z-index:2;max-width:720px}
+.h-tag{font-size:.54rem;letter-spacing:.36em;text-transform:uppercase;color:var(--blue2);
+  font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:9px}
+.h-tag::before{content:"";width:22px;height:2px;background:var(--blue2);flex-shrink:0}
+.h-dot{width:6px;height:6px;background:var(--blue2);border-radius:50%;animation:dp 2s infinite}
+@keyframes dp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}
+.h-title{font-family:"DM Serif Display",serif;
+  font-size:clamp(3.4rem,13vw,7rem);font-weight:400;line-height:.92;
+  letter-spacing:-.02em;color:var(--ink);margin-bottom:22px}
+.h-title em{font-style:italic;color:var(--blue2);display:block}
+.h-title .ho{-webkit-text-stroke:1.5px var(--ink);color:transparent;display:block}
+.h-sub{font-size:.88rem;line-height:1.82;color:var(--grey);max-width:480px;margin-bottom:34px}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
+.btn-p{display:inline-flex;align-items:center;gap:8px;font-size:.58rem;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:700;color:var(--white);background:var(--blue);
+  padding:14px 28px;border-radius:3px;border:none;
+  transition:background .3s,transform .2s,box-shadow .3s}
+.btn-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,74,138,.28)}
+.btn-p svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+.btn-g{display:inline-flex;align-items:center;gap:8px;font-size:.58rem;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:600;color:var(--blue);background:transparent;
+  padding:14px 22px;border-radius:3px;border:2px solid rgba(26,74,138,.22);transition:all .3s}
+.btn-g:hover{border-color:var(--blue);background:rgba(26,74,138,.04)}
+.h-stats{display:flex;align-items:center;gap:24px;padding-top:26px;border-top:1px solid var(--border);flex-wrap:wrap}
+.hs{display:flex;flex-direction:column}
+.hs-n{font-family:"DM Serif Display",serif;font-size:1.9rem;color:var(--blue);line-height:1}
+.hs-l{font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey2);margin-top:3px;font-weight:600}
+.hs-d{width:1px;height:30px;background:var(--border)}
+
+/* SEÇÕES COMUNS */
+.sec{padding:72px 24px}
+.sec-in{max-width:1100px;margin:0 auto}
+.stag{font-size:.52rem;letter-spacing:.34em;text-transform:uppercase;color:var(--blue2);
+  font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.stag::before{content:"";width:18px;height:2px;background:var(--blue2);flex-shrink:0}
+.stitle{font-family:"DM Serif Display",serif;font-size:clamp(1.8rem,5vw,2.8rem);
+  font-weight:400;color:var(--ink);line-height:1.06;margin-bottom:14px}
+.stitle em{font-style:italic;color:var(--blue2)}
+.sdesc{font-size:.76rem;color:var(--grey);line-height:1.7;margin-top:6px}
+
+/* SOBRE */
+.sobre-grid{display:flex;flex-direction:column;gap:36px}
+.sobre-foto{width:100%;max-width:280px}
+.sobre-foto img{width:100%;border-radius:6px;box-shadow:var(--shadow2)}
+.sobre-foto-cap{margin-top:10px;text-align:center}
+.sobre-foto-cap strong{font-family:"DM Serif Display",serif;font-size:.95rem;color:var(--ink);display:block}
+.sobre-foto-cap span{font-size:.44rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue2);font-weight:600}
+.sobre-p{font-size:.82rem;line-height:1.85;color:var(--grey);margin-bottom:10px}
+.selos{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.selo{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;
+  background:var(--pearl);border-left:3px solid var(--blue);border-radius:0 4px 4px 0}
+.selo-i{font-size:.9rem;flex-shrink:0;margin-top:1px}
+.selo strong{display:block;font-size:.68rem;font-weight:600;color:var(--ink)}
+.selo span{font-size:.62rem;color:var(--grey);display:block;margin-top:1px}
+
+/* CONSTRUTORAS */
+.cg{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--border);margin-top:28px;border:1px solid var(--border)}
+.ci{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  background:var(--white);padding:20px 14px;cursor:pointer;transition:background .3s;
+  position:relative;border:none;min-height:90px;overflow:hidden}
+.ci::after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue3));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.ci:hover,.ci.active{background:var(--pearl)}
+.ci.active::after,.ci:hover::after{transform:scaleX(1)}
+.ci.active{background:linear-gradient(135deg,rgba(26,74,138,.04),rgba(58,127,212,.06))}
+/* Logo sem fundo */
+.ci img{max-height:36px;max-width:110px;object-fit:contain;
+  transition:opacity .3s;opacity:.65}
+.ci:hover img,.ci.active img{opacity:1}
+.ci span{font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--grey);transition:color .3s}
+.ci:hover span,.ci.active span{color:var(--blue)}
+
+/* VANTAGENS */
+.vg{display:grid;grid-template-columns:1fr;gap:2px;background:var(--border);margin-top:28px}
+.vc{background:var(--white);padding:26px 22px;position:relative;overflow:hidden;transition:background .3s}
+.vc::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue3));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.vc:hover{background:var(--pearl)}
+.vc:hover::before{transform:scaleX(1)}
+.vc-ico{font-size:1.4rem;margin-bottom:10px;display:block}
+.vc h3{font-family:"DM Serif Display",serif;font-size:.95rem;color:var(--ink);margin-bottom:6px}
+.vc p{font-size:.7rem;color:var(--grey);line-height:1.75}
+
+/* BOOKS — cards compactos, layout horizontal */
+.bp{display:none;animation:pIn .3s ease}
+.bp.active{display:block}
+@keyframes pIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.bg{display:grid;grid-template-columns:1fr;gap:12px}
+
+/* Card horizontal: thumb à esquerda, info à direita */
+.bc{display:flex;align-items:center;background:var(--white);
+  border:1px solid var(--border);border-radius:6px;overflow:hidden;
+  transition:box-shadow .3s,border-color .3s,transform .3s;
+  padding:12px 16px;gap:14px}
+.bc:hover{box-shadow:var(--shadow);border-color:rgba(26,74,138,.2);transform:translateY(-1px)}
+.bc-thumb{flex-shrink:0;width:52px;height:68px;position:relative;
+  background:var(--pearl2);border-radius:3px;overflow:hidden}
+.bc-thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:none;pointer-events:none}
+.bc-ov{display:none}
+.bc-info{flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bc-texts{display:flex;flex-direction:column;gap:2px}
+.bc-tag{font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);font-weight:700;display:block}
+.bc-name{font-family:"DM Serif Display",serif;font-size:.88rem;color:var(--ink)}
+.bc-wa{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--white);background:var(--blue);border:none;
+  padding:8px 14px;border-radius:3px;transition:all .3s;white-space:nowrap;flex-shrink:0}
+.bc-wa:hover{background:var(--blue2)}
+
+/* CTA FINAL */
+.cta-s{background:var(--ink);text-align:center;position:relative;overflow:hidden}
+.cta-s::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 80px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 80px)}
+.cta-glow{position:absolute;width:460px;height:460px;border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(ellipse,rgba(26,74,138,.25) 0%,transparent 65%)}
+.cta-in{position:relative;z-index:1}
+.cta-in .stag{color:rgba(255,255,255,.4);justify-content:center}
+.cta-in .stag::before{background:rgba(255,255,255,.22)}
+.cta-in .stitle{color:var(--white);text-align:center}
+.cta-in .stitle em{color:rgba(150,195,255,.9)}
+.cta-sub{font-size:.8rem;color:rgba(255,255,255,.5);max-width:360px;margin:12px auto 30px;line-height:1.8}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;font-size:.58rem;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:#fff;background:#25D366;padding:14px 26px;border-radius:3px;transition:filter .3s,transform .2s}
+.btn-wa svg{width:15px;height:15px;fill:currentColor}
+.btn-wa:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-tel{display:inline-flex;align-items:center;gap:7px;font-size:.58rem;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  color:rgba(255,255,255,.65);padding:14px 22px;border-radius:3px;
+  border:2px solid rgba(255,255,255,.16);transition:all .3s}
+.btn-tel:hover{border-color:rgba(255,255,255,.55);color:var(--white)}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:20px 24px}
+
+/* Footer com logo */
+.ft-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ft-left{display:flex;align-items:center;gap:12px}
+.ft-logo{height:40px;width:auto;opacity:.55;filter:brightness(0) invert(1);transition:opacity .3s}
+.ft-logo:hover{opacity:.8}
+
+.ft-brand{font-family:"DM Serif Display",serif;font-size:.9rem;color:rgba(255,255,255,.55)}
+.ft-info{font-size:.44rem;color:rgba(255,255,255,.22);letter-spacing:.1em;text-align:center}
+.ft-dev{font-size:.4rem;color:rgba(255,255,255,.13);letter-spacing:.1em;text-transform:uppercase}
+.ft-dev a{color:rgba(255,255,255,.15);transition:color .3s}
+.ft-dev a:hover{color:rgba(255,255,255,.4)}
+
+
+
+
+
+
+
+
+/* Plano logo horizontal — precisa de mais largura */
+.ci[data-c="plano"] img {
+  max-width: 140px !important;
+  max-height: 44px !important;
+}
+
+
+/* Tenda logo maior */
+.ci[data-c="tenda"] img {
+  max-height: 52px !important;
+  max-width: 130px !important;
+}
+
+/* WA FLOAT */
+.wa-fl{position:fixed;bottom:20px;right:20px;z-index:500;
+  display:flex;align-items:center;gap:8px;
+  background:#25D366;color:#fff;padding:11px 18px 11px 12px;border-radius:100px;
+  font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:0 4px 18px rgba(37,211,102,.4);opacity:0;
+  transition:opacity .4s,transform .2s;pointer-events:none}
+.wa-fl.show{opacity:1;pointer-events:auto}
+.wa-fl:hover{transform:scale(1.04)}
+.wa-fl svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);
+  transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+
+/* bg alternado nas seções */
+.bg-w{background:var(--white)}
+.bg-p{background:var(--pearl)}
+
+/* ── TABLET 600px+ ── */
+@media(min-width:600px){
+  .sec{padding:80px 32px}
+  .hero{padding:108px 32px 80px}
+  footer{padding:22px 32px}
+  .cg{grid-template-columns:repeat(4,1fr)}
+  .bg{grid-template-columns:1fr 1fr;gap:10px}
+  .vg{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── DESKTOP 900px+ ── */
+@media(min-width:900px){
+  .nav-links{display:flex}
+  .hbg{display:none}
+  .sec{padding:88px 48px}
+  .hero{padding:120px 48px 96px}
+  footer{padding:24px 48px}
+  .hero-in{max-width:800px}
+  .h-title{font-size:clamp(4.5rem,7.5vw,7.5rem)}
+  .sobre-grid{flex-direction:row;gap:60px;align-items:flex-start}
+  .sobre-foto{width:240px;flex-shrink:0}
+  .cg{grid-template-columns:repeat(4,1fr)}
+  .bg{grid-template-columns:1fr 1fr;gap:10px}
+  .vg{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--white);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-logo{
+  width:160px;animation:loaderFade 1s ease forwards;
+}
+.loader-bar-wrap{
+  width:120px;height:2px;background:rgba(26,74,138,.1);border-radius:2px;overflow:hidden;
+}
+.loader-bar{
+  height:100%;background:linear-gradient(90deg,var(--blue),var(--blue3));
+  border-radius:2px;animation:loaderBar 1.2s ease forwards;width:0;
+}
+.loader-txt{
+  font-size:.48rem;letter-spacing:.36em;text-transform:uppercase;
+  color:var(--grey2);font-weight:600;animation:loaderFade 1s .3s ease both;
+}
+@keyframes loaderFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes loaderBar{0%{width:0}60%{width:70%}100%{width:100%}}
+
+</style>
 </head>
 <body>
 
-<!-- ══════════ NAVBAR ══════════ -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <img src="images/pantovi.jpg" alt="Pantovi" class="h-8 brightness-0 invert opacity-80" onerror="this.style.display='none'" />
-      <span class="font-body text-white/70 text-xs tracking-[.2em] uppercase">Paulo Vieira</span>
-    </div>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#sobre"        class="font-body text-white/60 hover:text-white text-xs tracking-widest uppercase transition-colors">Sobre</a>
-      <a href="#construtoras" class="font-body text-white/60 hover:text-white text-xs tracking-widest uppercase transition-colors">Construtoras</a>
-      <a href="#vantagens"    class="font-body text-white/60 hover:text-white text-xs tracking-widest uppercase transition-colors">Vantagens</a>
-      <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20vim%20pelo%20portal!" target="_blank"
-         class="font-body font-medium text-deep bg-gold hover:bg-yellow-400 text-xs tracking-widest uppercase px-5 py-2.5 transition-colors" style="border-radius:2px;">
-        Falar Agora
-      </a>
-    </div>
-    <button onclick="toggleMenu()" class="md:hidden text-white p-1">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <img src="images/pantovi.png" alt="Pantovi Imóveis" class="loader-logo">
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <span class="loader-txt">Carregando</span>
+</div>
+
+<div id="pb"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-row">
+    <a href="#" class="nav-brand">
+      <img src="images/pantovi.png" alt="Pantovi Imóveis" class="nav-pantovi">
+      <div class="nav-brand-text">
+        <span class="nav-name">Paulo Vieira</span>
+        <span class="nav-creci">CRECI 137412-F</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#construtoras">Construtoras</a></li>
+      <li><a href="#vantagens">Vantagens</a></li>
+      <li><a href="#books">Books</a></li>
+    </ul>
+    <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20vim%20pelo%20portal!" class="nav-wa" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Falar Agora
+    </a>
+    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden px-6 py-4 border-t border-white/10" style="background:rgba(15,29,74,.97); backdrop-filter:blur(12px);">
-    <div class="flex flex-col gap-4">
-      <a href="#sobre"        onclick="toggleMenu()" class="font-body text-white/70 text-xs tracking-widest uppercase py-2">Sobre</a>
-      <a href="#construtoras" onclick="toggleMenu()" class="font-body text-white/70 text-xs tracking-widest uppercase py-2">Construtoras</a>
-      <a href="#vantagens"    onclick="toggleMenu()" class="font-body text-white/70 text-xs tracking-widest uppercase py-2">Vantagens</a>
-      <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20vim%20pelo%20portal!" target="_blank"
-         class="font-body font-medium text-deep bg-gold text-xs tracking-widest uppercase px-5 py-3 text-center mt-2" style="border-radius:2px;">
-        Falar no WhatsApp
-      </a>
-    </div>
+  <div class="mob" id="mob">
+    <a href="#sobre">Sobre Paulo</a>
+    <a href="#construtoras">Construtoras</a>
+    <a href="#vantagens">Vantagens</a>
+    <a href="#books">Books</a>
+    <a href="https://wa.me/5511997966048" target="_blank" class="mob-wa">💬 WhatsApp</a>
   </div>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="relative min-h-screen flex items-center overflow-hidden" style="background:#0F1D4A;">
-  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0" style="opacity:.75;">
-    <source src="images/hero.mp4" type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 z-10" style="background:linear-gradient(135deg,rgba(15,29,74,.9) 0%,rgba(26,44,107,.65) 55%,rgba(15,29,74,.85) 100%);"></div>
+<!-- Canvas partículas hero -->
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hg hg1"></div><div class="hg hg2"></div>
+  <div class="hero-in">
+    <div class="h-tag rv"><div class="h-dot"></div>São Paulo · Pantovi Imóveis</div>
+    <h1 class="h-title rv">
+      O imóvel<em>certo</em><span class="ho">para você.</span>
+    </h1>
+    <p class="h-sub rv">Acesso exclusivo às maiores construtoras de São Paulo. Lançamentos, condições especiais e atendimento direto no WhatsApp.</p>
+    <div class="h-btns rv">
+      <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20quero%20conhecer%20os%20lançamentos!" class="btn-p" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Falar no WhatsApp
+      </a>
+      <a href="#construtoras" class="btn-g">Ver Construtoras</a>
+    </div>
+    <div class="h-stats rv">
+      <div class="hs"><span class="hs-n">8+</span><span class="hs-l">Construtoras</span></div>
+      <div class="hs-d"></div>
+      <div class="hs"><span class="hs-n">12</span><span class="hs-l">Anos de experiência</span></div>
+      <div class="hs-d"></div>
+      <div class="hs"><span class="hs-n">SP</span><span class="hs-l">São Paulo</span></div>
+      <div class="hs-d"></div>
+      <div class="hs"><span class="hs-n">24h</span><span class="hs-l">Atendimento</span></div>
+    </div>
+  </div>
+</section>
 
-  <div class="relative z-20 w-full max-w-7xl mx-auto px-6 py-28 lg:py-0 lg:min-h-screen lg:flex lg:items-center">
-    <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-      <!-- Esquerdo -->
-      <div class="flex flex-col gap-5">
-        <div class="a1 flex items-center gap-3">
-          <img src="images/pantovi.jpg" alt="Pantovi" class="h-8 brightness-0 invert opacity-80" onerror="this.style.display='none'" />
-          <div class="w-px h-7 bg-gold opacity-40"></div>
-          <span class="font-body text-white/50 text-xs tracking-[.22em] uppercase">Pantovi Imóveis</span>
-        </div>
-
-        <div class="a2">
-          <span class="gold-bar"></span>
-          <p class="font-body text-white/40 text-xs tracking-[.22em] uppercase mt-3">São Paulo · CRECI 137412-F</p>
-          <h2 class="font-display text-white font-light text-3xl lg:text-4xl tracking-tight mt-1">Paulo Vieira</h2>
-        </div>
-
-        <div class="a3">
-          <h1 class="font-display font-light text-white leading-[1.08]" style="font-size:clamp(2.8rem,5.5vw,4.4rem);">
-            O imóvel <em style="color:#C9A84C;font-style:italic;">certo</em><br/>para você.
-          </h1>
-        </div>
-
-        <div class="a4">
-          <p class="font-body font-light text-white/65 text-base lg:text-lg leading-relaxed max-w-md">
-            Acesso exclusivo às maiores construtoras de São Paulo. Lançamentos, condições especiais e atendimento direto no WhatsApp.
-          </p>
-        </div>
-
-        <div class="a5 flex flex-col sm:flex-row gap-3">
-          <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20quero%20conhecer%20os%20lançamentos!" target="_blank"
-             class="font-body font-medium text-deep bg-gold hover:bg-yellow-400 text-xs tracking-widest uppercase px-8 py-4 text-center transition-all" style="border-radius:2px;">
-            Falar no WhatsApp →
-          </a>
-          <a href="#construtoras"
-             class="font-body font-light text-white border border-white/35 hover:border-gold hover:text-gold text-xs tracking-widest uppercase px-8 py-4 text-center transition-all" style="border-radius:2px;">
-            Ver Construtoras
-          </a>
-        </div>
-
-        <div class="a6 flex items-center gap-0 pt-1">
-          <div class="pr-6 text-center">
-            <p class="font-display text-white font-light text-3xl">8<span style="color:#C9A84C;">+</span></p>
-            <p class="font-body text-white/40 text-xs tracking-widest uppercase mt-0.5">Construtoras</p>
-          </div>
-          <div class="w-px h-9 mx-2" style="background:#C9A84C;opacity:.3;"></div>
-          <div class="px-6 text-center">
-            <p class="font-display text-white font-light text-3xl">12<span style="color:#C9A84C;">+</span></p>
-            <p class="font-body text-white/40 text-xs tracking-widest uppercase mt-0.5">Anos de Exp.</p>
-          </div>
-          <div class="w-px h-9 mx-2" style="background:#C9A84C;opacity:.3;"></div>
-          <div class="pl-6 text-center">
-            <p class="font-display font-light text-3xl" style="color:#C9A84C;">SP</p>
-            <p class="font-body text-white/40 text-xs tracking-widest uppercase mt-0.5">São Paulo</p>
-          </div>
+<!-- SOBRE -->
+<section class="sec bg-w" id="sobre">
+  <div class="sec-in">
+    <div class="sobre-grid">
+      <div class="sobre-foto rv">
+        <img src="images/paulo.jpg" alt="Paulo Vieira — Corretor de Imóveis">
+        <div class="sobre-foto-cap">
+          <strong>Paulo Vieira</strong>
+          <span>CRECI 137412-F</span>
         </div>
       </div>
+      <div>
+        <p class="stag rv">Quem é Paulo Vieira</p>
+        <h2 class="stitle rv">Seu corretor de <em>confiança</em> em São Paulo</h2>
+        <p class="sobre-p rv">Com mais de 12 anos de experiência no mercado imobiliário de São Paulo, Paulo Vieira é corretor credenciado com acesso direto às maiores construtoras do país. Do primeiro contato até a assinatura, você tem acompanhamento completo e personalizado.</p>
+        <p class="sobre-p rv">Com atendimento ágil e linguagem transparente, Paulo garante condições que você não encontra em outros canais — incluindo lançamentos e ofertas em pré-venda antes de qualquer divulgação pública.</p>
+        <div class="selos">
+          <div class="selo rv d1"><span class="selo-i">✓</span><div><strong>CRECI 137412-F</strong><span>Credenciado São Paulo</span></div></div>
+          <div class="selo rv d2"><span class="selo-i">⚡</span><div><strong>Resposta rápida</strong><span>Atendimento direto no WhatsApp</span></div></div>
+          <div class="selo rv d3"><span class="selo-i">🏆</span><div><strong>Condições exclusivas</strong><span>Acesso antecipado a lançamentos</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- Direito — desktop only -->
-      <div class="hidden lg:flex justify-center items-center a-photo">
-        <div class="relative">
-          <div class="absolute -top-4 -right-4 w-full h-full border" style="border-color:rgba(201,168,76,.2);border-radius:2px;"></div>
-          <div class="relative overflow-hidden" style="border-radius:2px;border:1px solid rgba(201,168,76,.25);">
-            <img src="images/paulo.jpg" alt="Paulo Vieira" class="w-80 xl:w-96 object-cover" style="aspect-ratio:3/4;object-position:center top;" />
-            <div class="absolute bottom-0 left-0 right-0 h-36" style="background:linear-gradient(to top,rgba(15,29,74,.9),transparent);"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <p class="font-display text-white text-xl font-light">Paulo Vieira</p>
-              <p class="font-body text-xs tracking-widest uppercase mt-0.5" style="color:#C9A84C;">CRECI 137412-F · Pantovi Imóveis</p>
+<!-- CONSTRUTORAS -->
+<section class="sec bg-p" id="construtoras">
+  <div class="sec-in">
+    <p class="stag rv">Parceiras Oficiais</p>
+    <h2 class="stitle rv">Construtoras com as quais <em>Paulo trabalha</em></h2>
+    <p class="sdesc rv">Selecione uma construtora para ver os books disponíveis</p>
+    <div class="cg rv">
+        <button class="ci active" data-c="vivaz" onclick="selC(this,'vivaz')">
+          <img src="images/vivaz.png" alt="Vivaz Residencial">
+          <span>Vivaz Residencial</span>
+        </button>
+        <button class="ci" data-c="vibra" onclick="selC(this,'vibra')">
+          <img src="images/vibra.png" alt="Vibra Residencial">
+          <span>Vibra Residencial</span>
+        </button>
+        <button class="ci" data-c="tenda" onclick="selC(this,'tenda')">
+          <img src="images/tenda.png" alt="Construtora Tenda">
+          <span>Construtora Tenda</span>
+        </button>
+        <button class="ci" data-c="plano" onclick="selC(this,'plano')">
+          <img src="images/plano.png" alt="Plano & Plano">
+<span>Plano & Plano</span>
+        </button>
+        <button class="ci" data-c="emccamp" onclick="selC(this,'emccamp')">
+          <img src="images/emccamp.png" alt="EMCCAMP">
+          <span>EMCCAMP</span>
+        </button>
+        <button class="ci" data-c="cury" onclick="selC(this,'cury')">
+          <img src="images/cury.png" alt="Cury Construtora">
+          <span>Cury Construtora</span>
+        </button>
+        <button class="ci" data-c="metrocasa" onclick="selC(this,'metrocasa')">
+          <img src="images/metrocasa.png" alt="Metrocasa">
+          <span>Metrocasa</span>
+        </button>
+        <button class="ci" data-c="econ" onclick="selC(this,'econ')">
+          <img src="images/econ.png" alt="Econ Construtora">
+          <span>Econ Construtora</span>
+        </button>
+
+    </div>
+    <p class="cg-mais rv">✦ E muito mais — Paulo trabalha com outras construtoras. <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20quero%20saber%20sobre%20outras%20construtoras!" target="_blank">Consulte disponibilidade →</a></p>
+  </div>
+</section>
+
+<!-- VANTAGENS -->
+<section class="sec bg-w" id="vantagens">
+  <div class="sec-in">
+    <p class="stag rv">Por que Paulo Vieira</p>
+    <h2 class="stitle rv">Vantagens de comprar <em>com Paulo</em></h2>
+    <div class="vg">
+      <div class="vc rv d1"><span class="vc-ico">🎯</span><h3>Atendimento Personalizado</h3><p>Paulo entende seu perfil e apresenta apenas os imóveis que fazem sentido para você.</p></div>
+      <div class="vc rv d2"><span class="vc-ico">⚡</span><h3>Resposta Rápida</h3><p>Atendimento direto pelo WhatsApp. Paulo responde pessoalmente — sem secretária, sem espera.</p></div>
+      <div class="vc rv d3"><span class="vc-ico">🏆</span><h3>Condições Exclusivas</h3><p>Acesso a lançamentos e condições antes da divulgação ao público geral.</p></div>
+      <div class="vc rv d4"><span class="vc-ico">📋</span><h3>Processo Simples</h3><p>Paulo cuida de toda a burocracia. Você só precisa escolher e assinar.</p></div>
+      <div class="vc rv d5"><span class="vc-ico">🔒</span><h3>Total Segurança</h3><p>Corretor credenciado CRECI 137412-F. Total transparência do início ao fim.</p></div>
+      <div class="vc rv d6"><span class="vc-ico">📍</span><h3>Especialista em SP</h3><p>Profundo conhecimento do mercado paulistano e as melhores oportunidades da cidade.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="sec bg-p" id="books">
+  <div class="sec-in">
+    <p class="stag" id="b-tag">Books · Vivaz Residencial</p>
+    <h2 class="stitle" id="b-title">Empreendimentos <em>disponíveis</em></h2>
+    <p class="sdesc">Clique em qualquer book para receber no WhatsApp</p>
+    <div style="margin-top:24px">
+      <div class="bp active" id="p-vivaz"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1hE3ma8jJ6dfIjRRcyQWjuWZBrFTmGRQ-/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 1</span>
             </div>
-          </div>
-          <div class="absolute -bottom-5 -left-10 px-4 py-3" style="background:rgba(15,29,74,.96);backdrop-filter:blur(12px);border:1px solid rgba(201,168,76,.2);border-radius:2px;">
-            <p class="font-body text-xs tracking-widest uppercase" style="color:#C9A84C;">⭐ Acesso Antecipado</p>
-            <p class="font-body text-white/60 text-xs mt-0.5">Lançamentos antes do público</p>
+            <a href="https://drive.google.com/file/d/1hE3ma8jJ6dfIjRRcyQWjuWZBrFTmGRQ-/view" target="_blank" class="bc-wa">Ver PDF →</a>
           </div>
         </div>
-      </div>
-
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/18QrCZiOrZD3h8RnIkps_YOrsra8jPJbT/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/18QrCZiOrZD3h8RnIkps_YOrsra8jPJbT/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1J8JCBeRbvAANZfTe1VvnW6H8_rGwMnjR/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 3</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1J8JCBeRbvAANZfTe1VvnW6H8_rGwMnjR/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1ZyitSYOmGVTNe0Nxgvrm1lq_s0GmeM8o/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 4</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1ZyitSYOmGVTNe0Nxgvrm1lq_s0GmeM8o/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1GBSpbCgEhQIY5q5sBQ7zR885FBurO5wH/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 5</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1GBSpbCgEhQIY5q5sBQ7zR885FBurO5wH/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1_ouC0B9ee3K9XDKURs95quBPo9vzWzR6/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 6</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1_ouC0B9ee3K9XDKURs95quBPo9vzWzR6/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1CktJ6PBcTNScp7UZQZsuzxijg70YyFWk/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 7</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1CktJ6PBcTNScp7UZQZsuzxijg70YyFWk/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1AiQR7qbnHLPNUOp-OH3QjBm29Oz8tb9x/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vivaz Residencial</span>
+              <span class="bc-name">Book 8</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1AiQR7qbnHLPNUOp-OH3QjBm29Oz8tb9x/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-vibra" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1HbNF3eNJegl1SWABWRFuFRUiwaUT1t2b/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vibra Residencial</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1HbNF3eNJegl1SWABWRFuFRUiwaUT1t2b/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/16nhKlcJOHrFWb3RdQLgGyHKcCx6Y5c1_/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Vibra Residencial</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/16nhKlcJOHrFWb3RdQLgGyHKcCx6Y5c1_/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-tenda" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/17xotwmTp2qKetubs6dPM2Xp3Ec0PYFVI/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Construtora Tenda</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/17xotwmTp2qKetubs6dPM2Xp3Ec0PYFVI/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-plano" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1pI2lexwBMBMYCfkwcv21Dk_YvWCF96Oe/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Plano & Plano</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1pI2lexwBMBMYCfkwcv21Dk_YvWCF96Oe/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1gMCpDZyWZ9XVQDJvC-BpfwQD9vX4Qe81/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Plano & Plano</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1gMCpDZyWZ9XVQDJvC-BpfwQD9vX4Qe81/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1g1rtqmkDA1o8zCdD2F9cotY9BBJQy-gJ/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Plano & Plano</span>
+              <span class="bc-name">Book 3</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1g1rtqmkDA1o8zCdD2F9cotY9BBJQy-gJ/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1soEKsPJiVkq5AztKUySfEZVjr1ehwEn3/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Plano & Plano</span>
+              <span class="bc-name">Book 4</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1soEKsPJiVkq5AztKUySfEZVjr1ehwEn3/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1hWkxhChoYyfAcEzPBG1xw3XUf1SeV9Yz/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Plano & Plano</span>
+              <span class="bc-name">Book 5</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1hWkxhChoYyfAcEzPBG1xw3XUf1SeV9Yz/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-emccamp" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1vOJMGZvYq-GGljb2jd6JJQ-Dkpz-P0SK/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">EMCCAMP</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1vOJMGZvYq-GGljb2jd6JJQ-Dkpz-P0SK/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1l29g6zOM9zCnxc-WMEWbomM_17TSo0zd/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">EMCCAMP</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1l29g6zOM9zCnxc-WMEWbomM_17TSo0zd/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-cury" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1jbwXaInXhL0BSOYLgY_5O-QNE1ZetLFg/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Cury Construtora</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1jbwXaInXhL0BSOYLgY_5O-QNE1ZetLFg/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1QgFiBKUev8ZXkFeU6ukaOJUlSW042O1Z/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Cury Construtora</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1QgFiBKUev8ZXkFeU6ukaOJUlSW042O1Z/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1z0Q1QhVeNbIFmSDyHHZFP2fykmlq6NAs/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Cury Construtora</span>
+              <span class="bc-name">Book 3</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1z0Q1QhVeNbIFmSDyHHZFP2fykmlq6NAs/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1FBjhuhyfGoeLqhbvV-dfw2s292ymf1GL/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Cury Construtora</span>
+              <span class="bc-name">Book 4</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1FBjhuhyfGoeLqhbvV-dfw2s292ymf1GL/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-metrocasa" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1kqPeMf0Xm-7f_-gOrcj3QRlm4DvrbzU6/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Metrocasa</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1kqPeMf0Xm-7f_-gOrcj3QRlm4DvrbzU6/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1Qfqa8hwgj3B43dcESelexIW9671nlbqA/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Metrocasa</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1Qfqa8hwgj3B43dcESelexIW9671nlbqA/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1Dvbc09HG826dKRP6c6c_44exgNtigEvB/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Metrocasa</span>
+              <span class="bc-name">Book 3</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1Dvbc09HG826dKRP6c6c_44exgNtigEvB/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1fFALC-xziKhdRZR_lioYIzTXDPFDSVwg/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Metrocasa</span>
+              <span class="bc-name">Book 4</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1fFALC-xziKhdRZR_lioYIzTXDPFDSVwg/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
+      <div class="bp" id="p-econ" style="display:none"><div class="bg">
+        <div class="bc rv d1">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1hAmMwB7xt1bYJxkAtjMF5TqS6oKDCLaM/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 1</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1hAmMwB7xt1bYJxkAtjMF5TqS6oKDCLaM/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1mppB3gP4hzFv8L4M7vZtLynLUiuytkcn/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 2</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1mppB3gP4hzFv8L4M7vZtLynLUiuytkcn/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1OwqU5vCmSKKLytOSTliznVo35hThUsd5/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 3</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1OwqU5vCmSKKLytOSTliznVo35hThUsd5/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1vGyELQgdpXcSvMTuXEjpVWWJuBp3xka6/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 4</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1vGyELQgdpXcSvMTuXEjpVWWJuBp3xka6/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1Gi4Nn5mhwotIfvjY9JzHlkKWpiof6blJ/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 5</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1Gi4Nn5mhwotIfvjY9JzHlkKWpiof6blJ/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/19L5i_nJru9tZYmigS2mdWPTVijQxKrxS/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 6</span>
+            </div>
+            <a href="https://drive.google.com/file/d/19L5i_nJru9tZYmigS2mdWPTVijQxKrxS/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1B2TZeDbghjnFaS33xWPuK4lCDzZRmY5K/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 7</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1B2TZeDbghjnFaS33xWPuK4lCDzZRmY5K/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1fP6Apl59t88jxEJSa7Ouljw7x5sj5f-v/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 8</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1fP6Apl59t88jxEJSa7Ouljw7x5sj5f-v/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1v_wGytw7Nth-pWx2eNWwvSeGFZaXP-Zx/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 9</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1v_wGytw7Nth-pWx2eNWwvSeGFZaXP-Zx/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        <div class="bc rv">
+          <div class="bc-thumb">
+            <iframe src="https://drive.google.com/file/d/1ZaNv9sXNtzuc3cPDrBkafRGwIK-bcL8V/preview" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="bc-info">
+            <div class="bc-texts">
+              <span class="bc-tag">Econ Construtora</span>
+              <span class="bc-name">Book 10</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1ZaNv9sXNtzuc3cPDrBkafRGwIK-bcL8V/view" target="_blank" class="bc-wa">Ver PDF →</a>
+          </div>
+        </div>
+        </div></div>
     </div>
-  </div>
-
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-30">
-    <span class="font-body text-white text-xs tracking-widest uppercase">Scroll</span>
-    <div class="w-px h-10 bg-white animate-pulse"></div>
   </div>
 </section>
 
-<!-- ══════════ CARROSSEL ══════════ -->
-<section class="py-10 overflow-hidden" style="background:#0F1D4A;">
-  <div class="max-w-7xl mx-auto px-6 mb-6 flex items-center gap-4">
-    <span class="gold-bar"></span>
-    <p class="font-body text-xs tracking-[.25em] uppercase" style="color:#C9A84C;">Construtoras Parceiras</p>
-    <span class="gold-bar"></span>
-  </div>
-  <div class="overflow-hidden">
-    <div class="logos-track">
-      <div class="flex items-center gap-16 px-8">
-        <img src="images/vivaz.png"    alt="Vivaz"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/vibra.png"    alt="Vibra"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/tenda.png"    alt="Tenda"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/plano.png"    alt="Plano"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/emccamp.png"  alt="EMCCAMP"  class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/cury.png"     alt="Cury"     class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/metrocasa.png" alt="Metrocasa" class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/econ.png"     alt="Econ"     class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-      </div>
-      <div class="flex items-center gap-16 px-8">
-        <img src="images/vivaz.png"    alt="Vivaz"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/vibra.png"    alt="Vibra"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/tenda.png"    alt="Tenda"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/plano.png"    alt="Plano"    class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/emccamp.png"  alt="EMCCAMP"  class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/cury.png"     alt="Cury"     class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/metrocasa.png" alt="Metrocasa" class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-        <img src="images/econ.png"     alt="Econ"     class="h-7 object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ SOBRE ══════════ -->
-<section id="sobre" class="py-24 marble-bg">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-      <div class="relative">
-        <div class="relative overflow-hidden" style="border-radius:2px;border-left:3px solid #C9A84C;box-shadow:8px 8px 48px rgba(26,44,107,.1);">
-          <img src="images/paulo.jpg" alt="Paulo Vieira" class="w-full object-cover" style="max-height:520px;object-position:center top;" />
-        </div>
-        <div class="absolute -bottom-5 -right-5 px-5 py-4" style="background:#1A2C6B;border:1px solid rgba(201,168,76,.3);border-radius:2px;box-shadow:0 8px 32px rgba(26,44,107,.2);">
-          <p class="font-body text-xs tracking-widest uppercase" style="color:#C9A84C;">CRECI 137412-F</p>
-          <p class="font-body text-white font-light text-sm mt-0.5">Credenciado São Paulo</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-5">
-        <div>
-          <p class="font-body text-xs tracking-[.25em] uppercase mb-3" style="color:#C9A84C;">Quem é Paulo Vieira</p>
-          <span class="gold-bar mb-4 block"></span>
-          <h2 class="font-display font-light text-royal leading-tight" style="font-size:clamp(2rem,4vw,3rem);">
-            Seu corretor de <em style="color:#C9A84C;font-style:italic;">confiança</em><br/>em São Paulo
-          </h2>
-        </div>
-        <p class="font-body font-light text-gray-500 leading-relaxed text-sm lg:text-base">
-          Com mais de 12 anos de experiência no mercado imobiliário de São Paulo, Paulo Vieira é corretor credenciado com acesso direto às maiores construtoras do país. Do primeiro contato até a assinatura, você tem acompanhamento completo e personalizado.
-        </p>
-        <p class="font-body font-light text-gray-500 leading-relaxed text-sm lg:text-base">
-          Com atendimento ágil e linguagem transparente, Paulo garante condições que você não encontra em outros canais — incluindo lançamentos e ofertas em pré-venda antes de qualquer divulgação pública.
-        </p>
-        <div class="flex flex-col gap-2.5 mt-1">
-          <div class="flex items-center gap-3 px-4 py-3" style="background:rgba(26,44,107,.05);border:1px solid rgba(26,44,107,.1);border-radius:2px;">
-            <span style="color:#C9A84C;">✓</span>
-            <span class="font-body font-medium text-royal text-sm">CRECI 137412-F</span>
-            <span class="font-body text-gray-400 text-sm">— Credenciado SP</span>
-          </div>
-          <div class="flex items-center gap-3 px-4 py-3" style="background:rgba(26,44,107,.05);border:1px solid rgba(26,44,107,.1);border-radius:2px;">
-            <span style="color:#C9A84C;">⚡</span>
-            <span class="font-body font-medium text-royal text-sm">Resposta Rápida</span>
-            <span class="font-body text-gray-400 text-sm">— Direto no WhatsApp</span>
-          </div>
-          <div class="flex items-center gap-3 px-4 py-3" style="background:rgba(26,44,107,.05);border:1px solid rgba(26,44,107,.1);border-radius:2px;">
-            <span style="color:#C9A84C;">🏆</span>
-            <span class="font-body font-medium text-royal text-sm">Condições Exclusivas</span>
-            <span class="font-body text-gray-400 text-sm">— Acesso antecipado</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<span class="gold-full block"></span>
-
-<!-- ══════════ CONSTRUTORAS + BOOKS ══════════ -->
-<section id="construtoras" class="py-24 offwhite-bg">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <p class="font-body text-xs tracking-[.25em] uppercase mb-3" style="color:#C9A84C;">Parceiras Oficiais</p>
-      <span class="gold-bar mx-auto block mb-4"></span>
-      <h2 class="font-display font-light text-royal" style="font-size:clamp(2rem,4vw,3rem);">
-        Construtoras com as quais <em style="color:#C9A84C;font-style:italic;">Paulo trabalha</em>
-      </h2>
-      <p class="font-body font-light text-gray-400 mt-3 text-sm">Selecione uma construtora para ver os books disponíveis</p>
-    </div>
-
-    <!-- Tabs -->
-    <div class="flex flex-wrap gap-2.5 justify-center mb-10" id="tabs-container">
-      <button onclick="showBooks('vivaz')"    class="tab-btn active flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="vivaz">
-        <img src="images/vivaz.png"    alt="Vivaz"    class="h-5 object-contain" /><span class="font-body text-sm">Vivaz</span>
-      </button>
-      <button onclick="showBooks('vibra')"    class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="vibra">
-        <img src="images/vibra.png"    alt="Vibra"    class="h-5 object-contain" /><span class="font-body text-sm">Vibra</span>
-      </button>
-      <button onclick="showBooks('tenda')"    class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="tenda">
-        <img src="images/tenda.png"    alt="Tenda"    class="h-5 object-contain" /><span class="font-body text-sm">Tenda</span>
-      </button>
-      <button onclick="showBooks('plano')"    class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="plano">
-        <img src="images/plano.png"    alt="Plano"    class="h-5 object-contain" /><span class="font-body text-sm">Plano & Plano</span>
-      </button>
-      <button onclick="showBooks('emccamp')"  class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="emccamp">
-        <img src="images/emccamp.png"  alt="EMCCAMP"  class="h-5 object-contain" /><span class="font-body text-sm">EMCCAMP</span>
-      </button>
-      <button onclick="showBooks('cury')"     class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="cury">
-        <img src="images/cury.png"     alt="Cury"     class="h-5 object-contain" /><span class="font-body text-sm">Cury</span>
-      </button>
-      <button onclick="showBooks('metrocasa')" class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="metrocasa">
-        <img src="images/metrocasa.png" alt="Metrocasa" class="h-5 object-contain" /><span class="font-body text-sm">Metrocasa</span>
-      </button>
-      <button onclick="showBooks('econ')"     class="tab-btn flex items-center gap-2 px-4 py-2.5 border bg-white" style="border-color:rgba(26,44,107,.15);border-radius:2px;" data-tab="econ">
-        <img src="images/econ.png"     alt="Econ"     class="h-5 object-contain" /><span class="font-body text-sm">Econ</span>
-      </button>
-    </div>
-
-    <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-    <p class="text-center font-body text-gray-400 text-sm mt-8">
-      ✦ Paulo trabalha com outras construtoras.
-      <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20quero%20saber%20sobre%20outras%20construtoras!" target="_blank" style="color:#C9A84C;" class="hover:underline ml-1">Consulte disponibilidade →</a>
-    </p>
-  </div>
-</section>
-
-<span class="gold-full block"></span>
-
-<!-- ══════════ VANTAGENS ══════════ -->
-<section id="vantagens" class="py-24 marble-bg">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-14">
-      <p class="font-body text-xs tracking-[.25em] uppercase mb-3" style="color:#C9A84C;">Por que Paulo Vieira</p>
-      <span class="gold-bar mx-auto block mb-4"></span>
-      <h2 class="font-display font-light text-royal" style="font-size:clamp(2rem,4vw,3rem);">
-        Vantagens de comprar <em style="color:#C9A84C;font-style:italic;">com Paulo</em>
-      </h2>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="card-h p-7 bg-white" style="border:1px solid rgba(26,44,107,.08);border-top:2px solid #C9A84C;border-radius:2px;box-shadow:0 4px 24px rgba(26,44,107,.05);">
-        <div class="text-2xl mb-4">🎯</div>
-        <h3 class="font-display font-light text-royal text-xl mb-2">Atendimento Personalizado</h3>
-        <p class="font-body font-light text-gray-500 text-sm leading-relaxed">Paulo entende seu perfil e apresenta apenas os imóveis que fazem sentido para você.</p>
-      </div>
-      <div class="card-h p-7 bg-white" style="border:1px solid rgba(26,44,107,.08);border-top:2px solid #C9A84C;border-radius:2px;box-shadow:0 4px 24px rgba(26,44,107,.05);">
-        <div class="text-2xl mb-4">⚡</div>
-        <h3 class="font-display font-light text-royal text-xl mb-2">Resposta Rápida</h3>
-        <p class="font-body font-light text-gray-500 text-sm leading-relaxed">Atendimento direto pelo WhatsApp. Paulo responde pessoalmente — sem secretária, sem espera.</p>
-      </div>
-      <div class="card-h p-7 bg-white" style="border:1px solid rgba(26,44,107,.08);border-top:2px solid #C9A84C;border-radius:2px;box-shadow:0 4px 24px rgba(26,44,107,.05);">
-        <div class="text-2xl mb-4">🏆</div>
-        <h3 class="font-display font-light text-royal text-xl mb-2">Condições Exclusivas</h3>
-        <p class="font-body font-light text-gray-500 text-sm leading-relaxed">Acesso a lançamentos e condições antes da divulgação ao público geral.</p>
-      </div>
-      <div class="card-h p-7 bg-white" style="border:1px solid rgba(26,44,107,.08);border-top:2px solid #C9A84C;border-radius:2px;box-shadow:0 4px 24px rgba(26,44,107,.05);">
-        <div class="text-2xl mb-4">📋</div>
-        <h3 class="font-display font-light text-royal text-xl mb-2">Processo Simples</h3>
-        <p class="font-body font-light text-gray-500 text-sm leading-relaxed">Paulo cuida de toda a burocracia. Você só precisa escolher e assinar.</p>
-      </div>
-      <div class="card-h p-7 bg-white" style="border:1px solid rgba(26,44,107,.08);border-top:2px solid #C9A84C;border-radius:2px;box-shadow:0 4px 24px rgba(26,44,107,.05);">
-        <div class="text-2xl mb-4">🔒</div>
-        <h3 class="font-display font-light text-royal text-xl mb-2">Total Segurança</h3>
-        <p class="font-body font-light text-gray-500 text-sm leading-relaxed">Corretor credenciado CRECI 137412-F. Total transparência do início ao fim.</p>
-      </div>
-      <div class="card-h p-7 bg-white" style="border:1px solid rgba(26,44,107,.08);border-top:2px solid #C9A84C;border-radius:2px;box-shadow:0 4px 24px rgba(26,44,107,.05);">
-        <div class="text-2xl mb-4">📍</div>
-        <h3 class="font-display font-light text-royal text-xl mb-2">Especialista em SP</h3>
-        <p class="font-body font-light text-gray-500 text-sm leading-relaxed">Profundo conhecimento do mercado paulistano e as melhores oportunidades da cidade.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CTA FINAL ══════════ -->
-<section class="py-24 relative overflow-hidden" style="background:#1A2C6B;">
-  <span class="gold-full block absolute top-0"></span>
-  <div class="relative max-w-4xl mx-auto px-6 text-center">
-    <p class="font-body text-xs tracking-[.25em] uppercase mb-4" style="color:#C9A84C;">Próximo Passo</p>
-    <span class="gold-bar mx-auto block mb-6"></span>
-    <h2 class="font-display font-light text-white mb-4" style="font-size:clamp(2rem,5vw,3.5rem);">
-      Fale agora com<br/><em style="color:#C9A84C;font-style:italic;">Paulo Vieira</em>
-    </h2>
-    <p class="font-body font-light text-white/55 text-base lg:text-lg mb-10 max-w-lg mx-auto">
-      Atendimento direto, sem custo. Os melhores lançamentos de São Paulo esperando por você.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20quero%20conhecer%20os%20lançamentos!" target="_blank"
-         class="font-body font-medium text-deep bg-gold hover:bg-yellow-400 text-xs tracking-widest uppercase px-10 py-4 transition-all" style="border-radius:2px;">
-        WhatsApp Agora →
+<!-- CTA FINAL -->
+<section class="sec cta-s">
+  <div class="cta-glow"></div>
+  <div class="sec-in cta-in">
+    <p class="stag rv">Próximo passo</p>
+    <h2 class="stitle rv">Fale agora com <em>Paulo Vieira</em></h2>
+    <p class="cta-sub rv">Atendimento direto, sem custo. Os melhores lançamentos de São Paulo.</p>
+    <div class="cta-btns rv">
+      <a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20quero%20conhecer%20os%20lançamentos!" class="btn-wa" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp Agora
       </a>
-      <a href="tel:+5511997966048"
-         class="font-body font-light text-white border border-white/30 hover:border-gold text-xs tracking-widest uppercase px-10 py-4 transition-all" style="border-radius:2px;color:inherit;">
-        📞 (11) 99796-6048
-      </a>
+      <a href="tel:+5511997966048" class="btn-tel">📞 (11) 99796-6048</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer class="py-10" style="background:#0F1D4A;">
-  <div class="max-w-7xl mx-auto px-6">
-    <span class="gold-full block mb-8" style="opacity:.2;"></span>
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <img src="images/pantovi.jpg" alt="Pantovi" class="h-8 brightness-0 invert opacity-50" onerror="this.style.display='none'" />
-        <div>
-          <p class="font-body text-white/60 text-sm">Paulo Vieira Imóveis</p>
-          <p class="font-body text-white/25 text-xs">CRECI-SP 137412-F · São Paulo, SP</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-5">
-        <a href="https://wa.me/5511997966048" target="_blank" class="font-body text-white/35 hover:text-gold text-xs tracking-wider uppercase transition-colors">WhatsApp</a>
-        <div class="w-px h-3 bg-white/15"></div>
-        <a href="tel:+5511997966048" class="font-body text-white/35 hover:text-gold text-xs tracking-wider uppercase transition-colors">(11) 99796-6048</a>
-      </div>
-      <div class="text-center md:text-right">
-        <p class="font-body text-white/20 text-xs">© 2026 Paulo Vieira · Todos os direitos reservados</p>
-        <p class="font-body text-white/20 text-xs mt-0.5">Desenvolvido por
-          <a href="https://nova-ai-solutions-five.vercel.app/" target="_blank" class="transition-colors hover:text-gold" style="color:rgba(201,168,76,.5);">Nova AI Solutions</a>
-        </p>
+<footer>
+  <div class="ft-in">
+    <div class="ft-left">
+      <img src="images/pantovi.png" alt="Pantovi Imóveis" class="ft-logo">
+      <div>
+        <div class="ft-brand">Paulo Vieira Imóveis</div>
+        <div class="ft-info">CRECI-SP 137412-F · © 2026 Paulo Vieira · São Paulo, SP</div>
       </div>
     </div>
+    <div class="ft-dev">Desenvolvido por <a href="https://nova-ai-solutions-five.vercel.app/" target="_blank">Nova AI Solutions</a></div>
   </div>
 </footer>
 
-<!-- WhatsApp flutuante -->
-<a href="https://wa.me/5511997966048?text=Olá%20Paulo%2C%20vim%20pelo%20portal!" target="_blank"
-   class="wa-btn fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3"
-   style="background:#25D366;border-radius:50px;box-shadow:0 4px 24px rgba(37,211,102,.4);">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-  <span class="font-body font-medium text-white text-sm hidden sm:block">Falar com Paulo</span>
+<a href="https://wa.me/5511997966048?text=Olá%20Paulo!" class="wa-fl" id="wa-fl" target="_blank">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>Falar com Paulo</span>
 </a>
 
 <script>
-const books = {
-  vivaz:    { name:'Vivaz Residencial',  logo:'images/vivaz.png',    items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/1hE3ma8jJ6dfIjRRcyQWjuWZBrFTmGRQ-/view'},
-    {l:'Book 2', u:'https://drive.google.com/file/d/18QrCZiOrZD3h8RkKwMnjR/view'},
-    {l:'Book 3', u:'https://drive.google.com/file/d/1J8JCBeRbvAANZfTe1VvnW6H8_rGwMnjR/view'},
-    {l:'Book 4', u:'https://drive.google.com/file/d/1ZyitSYOmGVTVu6GMcM8o/view'},
-    {l:'Book 5', u:'https://drive.google.com/file/d/1GBSpbCgEhQIY5q5sBQ7zR885FBurO5wH/view'},
-    {l:'Book 6', u:'https://drive.google.com/file/d/1_ouC0B9ee3K9XDKURs95quBPo9vzWzR6/view'},
-    {l:'Book 7', u:'https://drive.google.com/file/d/1CktJ6PBcTNScp7UZQZsuzxijg70YyFWk/view'},
-    {l:'Book 8', u:'https://drive.google.com/file/d/1AiQR7qbnHLPNUOp-UIB6ClO3vv44/view'},
-  ]},
-  vibra:    { name:'Vibra Residencial',  logo:'images/vibra.png',    items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/1HbNF3eNJegl1SWABWRFUiwaUT1t2b/view'},
-    {l:'Book 2', u:'https://drive.google.com/file/d/16nhKlcJOHrFWb3RdQLgGyHKcCx6Y5c1_/view'},
-  ]},
-  tenda:    { name:'Construtora Tenda',  logo:'images/tenda.png',    items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/17xotwmTp2qKetubs6dKwF3PYFVI/view'},
-  ]},
-  plano:    { name:'Plano & Plano',      logo:'images/plano.png',    items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/1pI2lexwBMBMYCfkwcv21Dk_YvWCF96Oe/view'},
-    {l:'Book 2', u:'https://drive.google.com/file/d/1gMCpDZyWZ9XVQDJvC-BpfwQD9vX4Qe81/view'},
-    {l:'Book 3', u:'https://drive.google.com/file/d/1g1rtqmkDA1o8zCdD2F9cotY9BBJQy-gJ/view'},
-    {l:'Book 4', u:'https://drive.google.com/file/d/1soEKsPJiVkq5AztKUySfEZVjr1ehwEn3/view'},
-    {l:'Book 5', u:'https://drive.google.com/file/d/1hWkxhChoYyfAcEzPBG1xw3XUf1SeV9Yz/view'},
-  ]},
-  emccamp:  { name:'EMCCAMP',            logo:'images/emccamp.png',  items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/1vOJMGZvYq-GGljb2jd6JJQ-Dkpz-P0SK/view'},
-    {l:'Book 2', u:'https://drive.google.com/file/d/1l29g6zUM9zCnxc-WMEWbomM_17TSo0zd/view'},
-  ]},
-  cury:     { name:'Cury Construtora',   logo:'images/cury.png',     items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/1jbwXhL0BSOYLgY_5O-QNE1ZetLFg/view'},
-    {l:'Book 2', u:'https://drive.google.com/file/d/1QgFiBKUev8ZXkFeU6ukaOJUlSW042O1Z/view'},
-    {l:'Book 3', u:'https://drive.google.com/file/d/1z0Q1QhVeNbIHlB8hLSOPcN8fykmlq6NAs/view'},
-    {l:'Book 4', u:'https://drive.google.com/file/d/1FBjhuhyfGoeLqhbvV-dfw2s292ymf1GL/view'},
-  ]},
-  metrocasa:{ name:'Metrocasa',          logo:'images/metrocasa.png',items:[
-    {l:'Book 1', u:'https://drive.google.com/file/d/1kqPeMf0Xm-7f_-gOrcj3QRlm4DvrbzU6/view'},
-    {l:'Book 2', u:'https://drive.google.com/file/d/1Qfqa8hwgj3B43dcESelexIW9671nlbqA/view'},
-    {l:'Book 3', u:'https://drive.google.com/file/d/1Dvbc09HG826dKRP6c6c_44exgNtigEvB/view'},
-    {l:'Book 4', u:'https://drive.google.com/file/d/1fP6Apl59t88jxEJSa7Ouljw7x5sj5f-v/view'},
-  ]},
-  econ:     { name:'Econ Construtora',   logo:'images/econ.png',     items:[
-    {l:'Book 1',  u:'https://drive.google.com/file/d/1hAmMwB7xt1bYJxkAtjMF5TqS6oKDCLaM/view'},
-    {l:'Book 2',  u:'https://drive.google.com/file/d/1mppB3gP4hzFv8L4M7vZtLynLUiuytkcn/view'},
-    {l:'Book 3',  u:'https://drive.google.com/file/d/1OwqU5vCmSKKLytOSTliznVo35hThUsd5/view'},
-    {l:'Book 4',  u:'https://drive.google.com/file/d/1vGyELQgdpXcSvMTuXEjpVWWJuBp3xka6/view'},
-    {l:'Book 5',  u:'https://drive.google.com/file/d/1Gi4Nn5mhwotIfvjY9JzHlkKViJQxKrxS/view'},
-    {l:'Book 6',  u:'https://drive.google.com/file/d/19L5i_nJru9tZYmigS2mdWPTVijQxKrxS/view'},
-    {l:'Book 7',  u:'https://drive.google.com/file/d/1B2TZeDbghjnFaS33xWPuK4lCZY5a3m5K/view'},
-    {l:'Book 8',  u:'https://drive.google.com/file/d/1fP6Apl59t88jxEJSa7Ouljw7x5sj5f-v/view'},
-    {l:'Book 9',  u:'https://drive.google.com/file/d/1v_wGytw7Nth-pWb3RdQLgGyHKcCx6Y5c1/view'},
-    {l:'Book 10', u:'https://drive.google.com/file/d/1ZaNv9sXNtzuc3cPDrBkafRGwIK-bcL8V/view'},
-  ]},
-};
 
-function showBooks(key) {
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    b.classList.remove('active');
-    b.querySelector('img').style.filter = '';
-  });
-  const btn = document.querySelector('[data-tab="'+key+'"]');
-  if (btn) btn.classList.add('active');
-
-  const d = books[key];
-  document.getElementById('books-grid').innerHTML = d.items.map(b => `
-    <a href="${b.u}" target="_blank" class="card-h bg-white flex flex-col overflow-hidden" style="border:1px solid rgba(26,44,107,.1);border-radius:2px;box-shadow:0 4px 16px rgba(26,44,107,.06);text-decoration:none;">
-      <div class="px-5 py-4 flex items-center gap-3" style="background:#1A2C6B;">
-        <img src="${d.logo}" alt="${d.name}" class="h-5 object-contain brightness-0 invert opacity-75" />
-        <span class="font-body text-white/70 text-xs tracking-wider uppercase">${b.l}</span>
-      </div>
-      <div class="px-5 py-5 flex items-center justify-between flex-1">
-        <div>
-          <p class="font-display text-royal font-light text-lg">${d.name}</p>
-          <p class="font-body text-gray-400 text-xs mt-0.5">${b.l} · Clique para acessar</p>
-        </div>
-        <div class="flex flex-col items-center gap-1 ml-4">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
-          <span class="font-body text-xs font-medium" style="color:#C9A84C;">Ver PDF</span>
-        </div>
-      </div>
-    </a>
-  `).join('');
-}
-
-showBooks('vivaz');
-
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  window.scrollY > 80 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const l = document.getElementById('loader');
+    if(l) l.classList.add('hide');
+    setTimeout(() => { if(l) l.remove(); }, 700);
+  }, 1400);
 });
 
-function toggleMenu() {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
+window.addEventListener('scroll',()=>{
+  document.getElementById('pb').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('on',window.scrollY>50);
+},{passive:true});
+
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+hbg.addEventListener('click',()=>{
+  const o=mob.classList.toggle('open');
+  const s=hbg.querySelectorAll('span');
+  s[0].style.transform=o?'rotate(45deg) translate(5px,4.5px)':'';
+  s[1].style.opacity=o?'0':'1';
+  s[2].style.transform=o?'rotate(-45deg) translate(5px,-4.5px)':'';
+});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mob.classList.remove('open');
+  hbg.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';}); 
+}));
+
+const ro=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*80);ro.unobserve(e.target);}
+  });
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+
+const cNames={vivaz:'Vivaz Residencial',vibra:'Vibra Residencial',tenda:'Construtora Tenda',
+  plano:'Plano & Plano',emccamp:'EMCCAMP',cury:'Cury Construtora',
+  metrocasa:'Metrocasa',econ:'Econ Construtora'};
+
+function selC(btn,id){
+  document.querySelectorAll('.ci').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.bp').forEach(p=>{p.style.display='none';p.classList.remove('active');});
+  const p=document.getElementById('p-'+id);
+  if(p){p.style.display='block';p.classList.add('active');p.querySelectorAll('.rv').forEach(el=>{el.classList.remove('on');ro.observe(el);});}
+  document.getElementById('b-tag').textContent='Books · '+(cNames[id]||id);
+  setTimeout(()=>document.getElementById('books').scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
+
+function pedirBook(nome){
+  window.open('https://wa.me/5511997966048?text='+encodeURIComponent('Olá Paulo! Tenho interesse em: *'+nome+'*. Pode me enviar mais informações?'),'_blank');
+}
+
+const wafl=document.getElementById('wa-fl');
+window.addEventListener('scroll',()=>wafl.classList.toggle('show',window.scrollY>400),{passive:true});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+
+// ── CANVAS PARTÍCULAS HERO ──
+(function(){
+  const c = document.getElementById('hero-canvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, pts = [];
+
+  function resize(){
+    W = c.width  = c.parentElement.offsetWidth;
+    H = c.height = c.parentElement.offsetHeight;
+  }
+
+  function init(){
+    pts = [];
+    const n = Math.floor(W * H / 14000);
+    for(let i=0;i<n;i++){
+      pts.push({
+        x: Math.random()*W, y: Math.random()*H,
+        r: .4 + Math.random()*1.2,
+        o: .1 + Math.random()*.5,
+        vx: (Math.random()-.5)*.12,
+        vy: (Math.random()-.5)*.12,
+        phase: Math.random()*Math.PI*2,
+        speed: .0004+Math.random()*.0006,
+        col: Math.random()>.7 ? [26,74,138] : [58,127,212]
+      });
+    }
+  }
+
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    t += 16;
+    pts.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+      if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+      const alpha = p.o * (.5 + .5*Math.sin(t*p.speed*1000+p.phase));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${p.col[0]},${p.col[1]},${p.col[2]},${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize(); init(); draw();
+  window.addEventListener('resize', ()=>{ resize(); init(); }, {passive:true});
+})();
+
+// ── PARALLAX GLOWS NO HERO ──
+(function(){
+  const g1=document.querySelector('.hg1'), g2=document.querySelector('.hg2');
+  if(!g1||!g2) return;
+  let mx=0,my=0,cx=0,cy=0;
+  document.addEventListener('mousemove',e=>{
+    mx=(e.clientX/window.innerWidth-.5)*30;
+    my=(e.clientY/window.innerHeight-.5)*20;
+  });
+  (function anim(){
+    cx+=(mx-cx)*.04; cy+=(my-cy)*.04;
+    g1.style.transform=`translateY(-50%) translate(${cx*.6}px,${cy*.6}px)`;
+    g2.style.transform=`translate(${-cx*.4}px,${-cy*.4}px)`;
+    requestAnimationFrame(anim);
+  })();
+})();
+
+// ── CONTADORES ANIMADOS nos stats ──
+(function(){
+  const items = [
+    {sel:'.hs:nth-child(1) .hs-n', end:8, suf:'+'},
+    {sel:'.hs:nth-child(3) .hs-n', end:12, suf:''},
+  ];
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const txt = e.target.dataset.suf||'';
+      const end = parseInt(e.target.dataset.end||0);
+      const dur = 1600;
+      const start = performance.now();
+      (function tick(now){
+        const p = Math.min((now-start)/dur,1);
+        const v = Math.floor((1-Math.pow(1-p,3))*end);
+        e.target.textContent = v + txt;
+        if(p<1) requestAnimationFrame(tick);
+      })(performance.now());
+      obs.unobserve(e.target);
+    });
+  },{threshold:.8});
+
+  items.forEach(({sel,end,suf})=>{
+    const el = document.querySelector(sel);
+    if(el){ el.dataset.end=end; el.dataset.suf=suf; obs.observe(el); }
+  });
+})();
+
+// ── TILT 3D SUTIL NOS CARDS DE VANTAGEM ──
+document.querySelectorAll('.vc').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(600px) rotateX(${-y*4}deg) rotateY(${x*4}deg) translateY(-2px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+    card.style.transition='transform .5s cubic-bezier(.23,1,.32,1)';
+    setTimeout(()=>card.style.transition='',500);
+  });
+});
+
 </script>
 </body>
 </html>
